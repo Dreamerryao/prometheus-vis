@@ -1,38 +1,46 @@
-import React from 'react';
-import Head from 'next/head'
-import DemoPie from '../../components/demo'
-export default class Dashboard extends React.Component{
-    constructor(props){
-        super(props)
-        var time = new Date()
-        time.setSeconds(0)
-        this.state = {
-            time
-        }
-    }
-    
-    componentDidMount(){
-        console.log("mount")
-        this.timer = setInterval(()=>{
-            this.setState({time: new Date()}, ()=>{
-                console.log("tick")
-            })
-        }, 1000)
-    }
-    componentWillUnMount(){
-        clearInterval(this.timer) 
-        console.log("unmount")
-    }
-    render(){
-        return <div>
-            <Head>
-                <title>监控可视化面板</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <div>Welcome To Dashboard</div>
-            <div>{this.state.time.toString()}</div>
-            <DemoPie></DemoPie>
-        </div>
-    }
+import React from 'react'
+import Header from '../../components/Header'
+import Menu from '../../components/Menu'
+import http from '../../utils/http'
 
+export default function index() {
+    http.post("mock2/1360708/31487151")
+    .then(e=>{
+        console.log(e)
+    })
+    return (
+        <div className='dashboard'>
+            <div className='header'>
+                <Header className='header'></Header>
+            </div>
+            <div className='container'>
+                <div className='menu'><Menu></Menu></div>
+                <div className='content'>
+                    
+                </div>
+            </div>
+            <style jsx>{`
+                .dashboard{
+                    width: 100vw;
+                    height: 100vh;
+                }
+                .header{
+                    height: 50px;
+                }
+                .container{
+                    height: calc(100vh - 50px);
+                    display: flex;
+                }
+                .menu{
+                    width: 256px;
+                    height: 100%;
+                }
+                .content{
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    height: 100%;
+                }
+            `}</style>
+        </div>
+    )
 }
