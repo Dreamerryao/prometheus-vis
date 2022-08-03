@@ -1,10 +1,12 @@
 import React from 'react'
+import { LineChartOutlined} from '@ant-design/icons';
 
 export default function Header(props) {
 
     return (
         <div className='header'>
             <div className='content'>
+                <LineChartOutlined></LineChartOutlined>
                 前端监控系统
             </div>
             <style jsx>{`
@@ -12,17 +14,9 @@ export default function Header(props) {
                     height: 100%;
                     line-height: 50px;
                     background: #eee;
+                    padding-left: 2em;
                 }
             `}</style>
         </div>
     )
 }
-
-// import _JSXStyle from 'styled-jsx/style'
-
-// export default () => (
-//   <div className="jsx-123">
-//     <p className="jsx-123">only this paragraph will get the style :)</p>
-//     <_JSXStyle id="123">{`p.jsx-123 {color: red;}`}</_JSXStyle>
-//   </div>
-// )
