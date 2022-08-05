@@ -1,7 +1,7 @@
 import React from 'react'
 import http from '../../../utils/http'
 import Layout from '../layout'
-import { Column } from '@ant-design/plots';
+import { Column, DualAxes } from '@ant-design/plots';
 
 const config = {
     data: [
@@ -91,8 +91,160 @@ const config = {
     yField: 'value',
     seriesField: 'type',
     isGroup: true,
- 
 }
+const DemoDualAxes = () => {
+    const uvBillData = [
+      {
+        time: '2019-03',
+        value: 350,
+        type: 'uv',
+      },
+      {
+        time: '2019-04',
+        value: 900,
+        type: 'uv',
+      },
+      {
+        time: '2019-05',
+        value: 300,
+        type: 'uv',
+      },
+      {
+        time: '2019-06',
+        value: 450,
+        type: 'uv',
+      },
+      {
+        time: '2019-07',
+        value: 470,
+        type: 'uv',
+      },
+      {
+        time: '2019-03',
+        value: 220,
+        type: 'bill',
+      },
+      {
+        time: '2019-04',
+        value: 300,
+        type: 'bill',
+      },
+      {
+        time: '2019-05',
+        value: 250,
+        type: 'bill',
+      },
+      {
+        time: '2019-06',
+        value: 220,
+        type: 'bill',
+      },
+      {
+        time: '2019-07',
+        value: 362,
+        type: 'bill',
+      },
+    ];
+    const transformData = [
+      {
+        time: '2019-03',
+        count: 800,
+        name: 'a',
+      },
+      {
+        time: '2019-04',
+        count: 600,
+        name: 'a',
+      },
+      {
+        time: '2019-05',
+        count: 400,
+        name: 'a',
+      },
+      {
+        time: '2019-06',
+        count: 380,
+        name: 'a',
+      },
+      {
+        time: '2019-07',
+        count: 220,
+        name: 'a',
+      },
+      {
+        time: '2019-03',
+        count: 750,
+        name: 'b',
+      },
+      {
+        time: '2019-04',
+        count: 650,
+        name: 'b',
+      },
+      {
+        time: '2019-05',
+        count: 450,
+        name: 'b',
+      },
+      {
+        time: '2019-06',
+        count: 400,
+        name: 'b',
+      },
+      {
+        time: '2019-07',
+        count: 320,
+        name: 'b',
+      },
+      {
+        time: '2019-03',
+        count: 900,
+        name: 'c',
+      },
+      {
+        time: '2019-04',
+        count: 600,
+        name: 'c',
+      },
+      {
+        time: '2019-05',
+        count: 450,
+        name: 'c',
+      },
+      {
+        time: '2019-06',
+        count: 300,
+        name: 'c',
+      },
+      {
+        time: '2019-07',
+        count: 200,
+        name: 'c',
+      },
+    ];
+    const config = {
+      data: [uvBillData, transformData],
+      xField: 'time',
+      yField: ['value', 'count'],
+      geometryOptions: [
+        {
+          geometry: 'line',
+          seriesField: 'type',
+          lineStyle: {
+            lineWidth: 3,
+            lineDash: [5, 5],
+          },
+          smooth: true,
+        },
+        {
+          geometry: 'line',
+          seriesField: 'name',
+          point: {},
+        },
+      ],
+    };
+    return <DualAxes {...config} />;
+  };
 // 首页概览
 function Page() {
     http.get("/1360708/v1/api/behavior")
@@ -115,6 +267,24 @@ function Page() {
                 </div>
                 <div className='behavior-chart'>
                     <Column {...config} />
+                </div>
+            </div>
+        </div>
+        <div className='wrapper'>
+            <div className='title'>站点访问量</div>
+            <div className='container'>
+                <div className='behavior-count'>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>pv总数</div>
+                        <div className='count-card-value'>2102</div>
+                    </div>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>uv总数</div>
+                        <div className='count-card-value'>324</div>
+                    </div>
+                </div>
+                <div className='behavior-chart'>
+                    <DemoDualAxes />
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import {
   DashboardOutlined,
   ApiOutlined
 } from '@ant-design/icons';
-import { Menu, Switch } from 'antd';
+import { Menu} from 'antd';
 import React, { useState } from 'react';
 import {useRouter} from 'next/router'
 
@@ -21,10 +21,11 @@ function getItem(label, key, icon, children, type) {
 }
 
 const items = [
+  // key
     getItem('首页概览', '/dashboard/', <ChromeOutlined />),
     getItem('异常监控', '/dashboard/error', <BugOutlined />, [
         getItem('JS错误', '/js'),
-        getItem('资源异常', '2')
+        getItem('资源异常', '/resource')
     ]),
     getItem('HTTP请求监控', '/dashboard/http', <BulbOutlined />,),
     getItem('性能监控', '/dashboard/performence', <DashboardOutlined />, [
