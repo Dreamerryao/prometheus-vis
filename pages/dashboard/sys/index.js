@@ -1,9 +1,330 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import http from '../../../utils/http'
 import Layout from '../layout'
 import { Column } from '@ant-design/plots';
+import { Pie } from '@ant-design/plots';
+import ReactDOM from 'react-dom';
+import { DualAxes } from '@ant-design/plots';
 
-const config = {
+const DemoDualAxes = () => {
+  const uvBillData = [
+    {
+      time: '8',
+      value: 350,
+      type: '请求',
+    },
+    {
+      time: '10',
+      value: 900,
+      type: '请求',
+    },
+    {
+      time: '12',
+      value: 470,
+      type: '请求',
+    },
+    {
+      time: '16',
+      value: 300,
+      type: '请求',
+    },
+    {
+      time: '20',
+      value: 450,
+      type: '请求',
+    },
+    {
+      time: '24',
+      value: 470,
+      type: '请求',
+    },
+    {
+      time: '4',
+      value: 470,
+      type: '请求',
+    },
+    {
+      time: '6',
+      value: 470,
+      type: '请求',
+    },
+    {
+      time: '8',
+      value: 400,
+      type: '响应',
+    },
+    {
+      time: '10',
+      value: 300,
+      type: '响应',
+    },
+    {
+      time: '12',
+      value: 550,
+      type: '响应',
+    },
+    {
+      time: '16',
+      value: 200,
+      type: '响应',
+    },
+    {
+      time: '20',
+      value: 300,
+      type: '响应',
+    },
+    {
+      time: '24',
+      value: 700,
+      type: '响应',
+    },
+    {
+      time: '4',
+      value: 600,
+      type: '响应',
+    },
+    {
+      time: '6',
+      value: 300,
+      type: '响应',
+    },
+    {
+      time: '8',
+      value: 600,
+      type: '总时间',
+    },
+    {
+      time: '10',
+      value: 1000,
+      type: '总时间',
+    },
+    {
+      time: '12',
+      value: 400,
+      type: '总时间',
+    },
+    {
+      time: '16',
+      value: 600,
+      type: '总时间',
+    },
+    {
+      time: '20',
+      value: 300,
+      type: '总时间',
+    },
+    {
+      time: '24',
+      value: 700,
+      type: '总时间',
+    },
+    {
+      time: '4',
+      value: 650,
+      type: '总时间',
+    },
+    {
+      time: '6',
+      value: 600,
+      type: '总时间',
+    },
+  ];
+  const transformData = [
+    
+  ];
+  const config = {
+    data: [uvBillData, transformData],
+    xField: 'time',
+    yField: ['value', 'count'],
+    geometryOptions: [
+      {
+        geometry: 'line',
+        seriesField: 'type',
+        lineStyle: {
+          lineWidth: 3,
+          lineDash: [5, 5],
+        },
+        smooth: true,
+      },
+      {
+        geometry: 'line',
+        seriesField: 'name',
+        point: {},
+      },
+    ],
+  };
+  return <DualAxes {...config} />;
+};
+
+const DemoPie1 = () => {
+  const data = [
+    {
+      type: 'Edge',
+      value: 40,
+    },
+    {
+      type: 'Google',
+      value: 40,
+    },
+    {
+      type: 'Firefox',
+      value: 20,
+    },
+    {
+      type: '360',
+      value: 20,
+    },
+  ];
+  const config = {
+    appendPadding: 10,
+    data,
+    angleField: 'value',
+    colorField: 'type',
+    radius: 0.9,
+    label: {
+      type: 'inner',
+      offset: '-30%',
+      content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+      style: {
+        fontSize: 20,
+        textAlign: 'center',
+      },
+    },
+    interactions: [
+      {
+        type: 'element-active',
+      },
+    ],
+  };
+  return <Pie {...config} />;
+};
+const DemoPie2 = () => {
+  const data = [
+    {
+      type: 'windows',
+      value: 40,
+    },
+    {
+      type: 'Linux',
+      value: 40,
+    },
+    {
+      type: 'mac',
+      value: 20,
+    },
+    {
+      type: 'ios',
+      value: 20,
+    },
+    {
+      type: 'android',
+      value: 20,
+    },
+    {
+      type: '华为',
+      value: 20,
+    },
+  ];
+  const config = {
+    appendPadding: 10,
+    data,
+    angleField: 'value',
+    colorField: 'type',
+    radius: 0.9,
+    label: {
+      type: 'inner',
+      offset: '-30%',
+      content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+      style: {
+        fontSize: 20,
+        textAlign: 'center',
+      },
+    },
+    interactions: [
+      {
+        type: 'element-active',
+      },
+    ],
+  };
+  return <Pie {...config} />;
+};
+const DemoPie3 = () => {
+  const data = [
+    {
+      type: '系统异常',
+      value: 40,
+    },
+    {
+      type: '网络异常',
+      value: 40,
+    },
+    {
+      type: 'JS异常',
+      value: 20,
+    },
+    {
+      type: '应用异常',
+      value: 20,
+    },
+  ];
+  const config = {
+    appendPadding: 10,
+    data,
+    angleField: 'value',
+    colorField: 'type',
+    radius: 0.9,
+    label: {
+      type: 'inner',
+      offset: '-30%',
+      content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+      style: {
+        fontSize: 20,
+        textAlign: 'center',
+      },
+    },
+    interactions: [
+      {
+        type: 'element-active',
+      },
+    ],
+  };
+  return <Pie {...config} />;
+};
+const DemoPie4 = () => {
+  const data = [
+    {
+      type: 'PC',
+      value: 2102,
+    },
+    {
+      type: 'UV',
+      value: 324,
+    },
+  ];
+  const config = {
+    appendPadding: 10,
+    data,
+    angleField: 'value',
+    colorField: 'type',
+    radius: 0.9,
+    label: {
+      type: 'inner',
+      offset: '-30%',
+      content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+      style: {
+        fontSize: 20,
+        textAlign: 'center',
+      },
+    },
+    interactions: [
+      {
+        type: 'element-active',
+      },
+    ],
+  };
+  return <Pie {...config} />;
+};
+const config1 = {
     data: [
         
         {
@@ -100,6 +421,56 @@ function Page() {
         console.log(e)
     })
     return <div className='system'>
+      <div className='wrapper'>
+            <div className='title'>HTTP请求</div>
+            <div className='container'>
+                <div className='behavior-count'>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>请求（ms）</div>
+                        <div className='count-card-value'>2102ms</div>
+                    </div>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>响应（ms）</div>
+                        <div className='count-card-value'>324ms</div>
+                    </div>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>成功率</div>
+                        <div className='count-card-value'>32%</div>
+                    </div>
+                </div>
+                <div>
+               <DemoDualAxes />
+                </div>
+            </div>
+        </div>
+        <div className='wrapper'>
+            <div className='title'>设备与异常类型</div>
+            <div className='container'>
+                <div className='behavior-count'>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>浏览器占比</div>
+                        <DemoPie1 />
+                    </div>
+                </div>
+            </div>
+            <div className='container'>
+                <div className='behavior-count'>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>操作系统占比</div>
+                        <DemoPie2 />
+                    </div>
+                </div>
+            </div>
+            <div className='container'>
+                <div className='behavior-count'>
+                    <div className='behavior-count-card count-card'>
+                        <div className='count-card-title'>异常类型占比</div>
+                        <DemoPie3 />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div className='wrapper'>
             <div className='title'>站点访问量</div>
             <div className='container'>
@@ -113,8 +484,11 @@ function Page() {
                         <div className='count-card-value'>324</div>
                     </div>
                 </div>
+                <div>
+                <DemoPie4 />
+                </div>
                 <div className='behavior-chart'>
-                    <Column {...config} />
+                    <Column {...config1} />
                 </div>
             </div>
         </div>
