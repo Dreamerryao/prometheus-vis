@@ -422,92 +422,113 @@ function Page() {
         console.log(e)
     })
     return <div className='system'>
+      <div className='wrapper1'>
+      <span className='shouye1'>
+          <div className='s1'>总异常数：</div>
+          <div className='s2'>66</div>
+          <div className='s3'>日异常数：</div>
+          <span className='s4'>66</span>
+        </span>
+        <span className='shouye1'>
+          <div className='s1'>网络请求个数：</div>
+          <div className='s2'>666</div>
+          <div className='s3'>日请求数：</div>
+          <span className='s4'>66</span>
+        </span>
+        <span className='shouye1'>
+          <div className='s1'>异常占比：</div>
+          <div className='s2'>66%</div>
+          <div className='s3'>日异常占比：</div>
+          <span className='s4'>66</span>
+        </span>
+        <span className='shouye1'>
+          <div className='s1'>访问量</div>
+          <div className='s2'>66</div>
+          <div className='s3'>日访问量：</div>
+          <span className='s4'>66</span>
+        </span>
+      </div>
       <div className='wrapper'>
-            <div className='title'>HTTP请求</div>
+            <div className='title2'>HTTP请求</div>
             <div className='container'>
                 <div className='behavior-count'>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>请求（ms）</div>
-                        <div className='count-card-value'>2102ms</div>
+                    <div className='behavior-count-card count-card2'>
+                        <div className='count-card-title2'>请求（ms）</div>
+                        <div className='count-card-value2'>2102ms</div>
                     </div>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>响应（ms）</div>
-                        <div className='count-card-value'>324ms</div>
+                    <div className='behavior-count-card count-card2'>
+                        <div className='count-card-title2'>响应（ms）</div>
+                        <div className='count-card-value2'>324ms</div>
                     </div>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>成功率</div>
-                        <div className='count-card-value'>32%</div>
+                    <div className='behavior-count-card count-card2'>
+                        <div className='count-card-title2'>成功率</div>
+                        <div className='count-card-value2'>32%</div>
                     </div>
                 </div>
-                <div>
+                <div className='dempdualaxes'>
+                  <div className='ddl'>
                <DemoDualAxes />
+               </div>
                 </div>
             </div>
         </div>
+        <br></br>
+        <br></br>
         <div className='wrapper'>
-            <div className='title'>设备与异常类型</div>
+            <div className='title1'>设备与异常类型</div>
             <div className='container'>
-                <div className='behavior-count'>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>浏览器占比</div>
+                <div className='behavior-count1'>
+                    <div className='behavior-count-card count-card1'>
+                        <div className='count-card-title1'>浏览器占比</div>
+                        <div className='d1'>
                         <DemoPie1 />
+                        </div>
                     </div>
                 </div>
             </div>
             <div className='container'>
-                <div className='behavior-count'>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>操作系统占比</div>
+                <div className='behavior-count1'>
+                    <div className='behavior-count-card count-card1'>
+                        <div className='count-card-title1'>操作系统占比</div>
+                        <div className='d1'>
                         <DemoPie2 />
+                        </div>
                     </div>
                 </div>
             </div>
             <div className='container'>
-                <div className='behavior-count'>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>异常类型占比</div>
+                <div className='behavior-count1'>
+                    <div className='behavior-count-card count-card1'>
+                        <div className='count-card-title1'>异常类型占比</div>
+                        <div className='d1'>
                         <DemoPie3 />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div className='wrapper'>
+        <br></br>
+        <br></br>
+        <div className='wrapper2'>
             <div className='title'>站点访问量</div>
             <div className='container'>
                 <div className='behavior-count'>
                     <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>pv总数</div>
+                        <div className='count-card-title'>pv总数：</div>
                         <div className='count-card-value'>2102</div>
                     </div>
                     <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>uv总数</div>
+                        <div className='count-card-title'>uv总数：</div>
                         <div className='count-card-value'>324</div>
                     </div>
                 </div>
-                <div>
+                <div className='d2'>
+                <div className='D4'>
                 <DemoPie4 />
+                </div>
                 </div>
                 <div className='behavior-chart'>
                     <Column {...config1} />
-                </div>
-            </div>
-        </div>
-        <div className='wrapper'>
-            <div className='title'>站点访问量</div>
-            <div className='container'>
-                <div className='behavior-count'>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>pv总数</div>
-                        <div className='count-card-value'>2102</div>
-                    </div>
-                    <div className='behavior-count-card count-card'>
-                        <div className='count-card-title'>uv总数</div>
-                        <div className='count-card-value'>324</div>
-                    </div>
-                </div>
-                <div className='behavior-chart'>
-                    <DemoDualAxes />
                 </div>
             </div>
         </div>
@@ -517,15 +538,64 @@ function Page() {
                 box-sizing: border-box;
                 height: 100%;
                 overflow: scroll;
+                background: #f0f2f5;
             }
+            .wrapper1{
+              height: 195px;
+              width: 100%;
+              display: inline-flex;
+          }
             .wrapper{
+                background: white;
+                height: 435px;
                 width: 100%;
-                border-bottom: 2px solid #666;
+                display: inline-flex;
             }
-            .wrapper .title{
-                font-size: 15px;
-                font-weight: 700;
+            .wrapper2{
+              background: white;
+              height: 510px;
+              width: 100%;
+              display: inline-flex;
+          }
+            .wrapper .title1{
+              color: black;
+              width: 490px;
+              margin-top: 0px;
+              font-size: 18px;
+              text-align: center;
+              font-weight: bolder;
+              border-width: 6px;
+              border-color: cyan;
+              border-style: ridge;
+              display: inline;
+              height: 40px;
             }
+            .wrapper2 .title{
+              color: black;
+              width: 145px;
+              margin-top: 0px;
+              font-size: 18px;
+              text-align: center;
+              font-weight: bolder;
+              border-width: 6px;
+              border-color: cyan;
+              border-style: ridge;
+              display: inline;
+              height: 40px;
+          }
+          .wrapper .title2{
+            color: black;
+            width: 145px;
+            margin-top: 0px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bolder;
+            border-width: 6px;
+            border-color: cyan;
+            border-style: ridge;
+            display: inline;
+            height: 40px;
+        }
             .wrapper .container{
                 width: 100%;
                 display: flex;
@@ -534,6 +604,14 @@ function Page() {
                 justify-content: space-between;
                 flex-wrap: wrap;
             }
+            .wrapper2 .container{
+              width: 100%;
+              display: flex;
+              padding: 20px;
+              box-sizing: border-box;
+              justify-content: space-between;
+              flex-wrap: wrap;
+          }
             .wrapper .item{
                 width: 400px;
                 height: 280px;
@@ -546,22 +624,153 @@ function Page() {
                 flex-direction: column;
                 justify-content: space-around;
             }
+            .behavior-count1{
+              hieght: 300px;
+              display: flex;
+              width: 140px;
+              flex-direction: column;
+              justify-content: space-around;
+          }
+            .dempdualaxes{
+              border-left-width: 11px;
+              border-left-color: white;
+              border-left-style: inset;
+              width: 80%;
+            }
             .count-card{
-                width: 140px;
-                height: 80px;
-                background: lightblue;
-                padding: 10px;
-                box-sizing: border-box;
-                color: white;
+              margin-left: -25px;
+              background: aqua;
+              width: 230px;
+              height: 150px;
+              padding: 10px;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              color: black;
+              border-width: 8px;
+              border-color: aqua;
+              border-style: solid;
+              -webkit-border-radius: 44px;
+              -moz-border-radius: 44px;
+              border-radius: 35px;
+              margin-top: 34px;
             }
-            .count-card-title{
-                font-size: 15px;
-                font-weight: 700;
+            .count-card1{
+              background: white;
+              width: 320px;
+              height: 318px;
+              padding: 10px;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              color: white;
+              border-width: 11px;
+              border-color: white;
+              border-style: inset;
+          }
+          .count-card2{
+            background: aqua;
+            width: 210px;
+            height: 90px;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            color: black;
+            border-width: 8px;
+            border-color: aqua;
+            border-style: solid;
+            border-radius: 44px;
+            margin-top: 34px;
+        }
+            .count-card-title1{
+              color: black;
+              font-weight: 700;
+              font-size: 17px;
+              display: inline;
             }
-            .count-card-value{
+            .count-card-value1{
                 margin-top: 10px;
                 font-size: 16px;
             }
+            .count-card-title2{
+              font-size: 17px;
+              font-weight: 700;
+          }
+          .count-card-value2{
+              margin-top: -7px;
+              margin-left: 94px;
+              font-size: 22px;
+          }
+            .count-card-title{
+              font-size: 22px;
+              font-weight: 700;
+          }
+          .count-card-value{
+            margin-top: 10px;
+            margin-left: 118px;
+            font-size: 30px;
+          }
+          .d1{
+            height: 240px;
+            margin-left: -10px;
+          }
+          .d2{
+            width: 30%;
+            margin-top: 65px;
+            border-width: 11px;
+            border-color: white;
+            border-style: inset;
+            margin-left: 85px;
+          }
+          .behavior-chart{
+            width:30%;
+            margin-top: 58px;
+          }
+          .shouye1{
+            width: 33%;
+            height: 211px;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            color: black;
+            border-width: 20px;
+            background: white;
+            border-style: solid;
+            border-color: #f0f2f5;
+            background: white;
+            margin-top: -18px;
+          }
+          .s1{
+            font-size: 16px;
+            display: inline;
+            font-weight: bolder;
+            color: darkcyan;
+          }
+          .s2{
+            margin-left: 85px;
+            margin-top: 8px;
+            font-size: 41px;
+            height: 76px;
+            margin-right: 20px;
+          }
+          .s3{
+            margin-left: 2px;
+            margin-top: 20px;
+            font-size: 17px;
+            display: inline;
+            margin-right: 20px;
+          }
+          .s4{
+            font-size: 22px;
+          }
+          .ddl{
+            margin-left: 8%;
+          }
+          .D4{
+            width: 125%;
+          }
         `}</style>
     </div>
 }
