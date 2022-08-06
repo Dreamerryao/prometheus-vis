@@ -11,49 +11,59 @@ const columns = [
       dataIndex: 'timestamp',
       key: "timestamp",
       render: (timestamp) => formatDate(new Date(timestamp*1000)),
+      sorter:  (a, b) => a.timestamp - b.timestamp
     },
     {
         title: '错误类型',
-        dataIndex: 'errorType'
+        dataIndex: 'errorType',
+        key: 'errorType'
     },
     {
-      title: '错误信息',
-      dataIndex: 'message'
+        title: '错误信息',
+        dataIndex: 'message',
+        key: 'message'
     },
     {
-      title: '错误栈',
-      dataIndex: 'stack'
+        title: '错误栈',
+        dataIndex: 'stack',
+        key: 'stack'
     },
     {
         title: '发生页面',
-        dataIndex: 'title'
+        dataIndex: 'title',
+        key: 'title'
     },
     {
         title: '发生页面url',
-        dataIndex: 'url'
+        dataIndex: 'url',
+        key: 'url'
     },
     {
-      title: '浏览器',
-      dataIndex: 'userAgent'
+        title: '浏览器',
+        dataIndex: 'userAgent',
+        key: 'userAgent'
     },
+    
 ]
-  
 // 首页概览
 function Page() {
-    const [data, setDate] = useState(null)
+    const [data, setData] = useState([])
     useEffect(function updateForm() {
-        http.get("/1360708/v1/api/error/js")
+        http.get("/v1/api/error/js")
         .then(e=>{
             console.log(e)
-            setDate(e.data)
+            setData(e.data.map((i)=>{
+                i.key = i.id
+                return i
+            }))
         })
     }, [])
     return <div className='js-error'>
         <div className='options-wrapper'>
-
+            共{data.length}条错误
         </div>
         <div className='content-wrapper'>
-            <Table columns={columns} dataSource={data} pagination={false}/>
+            <Table columns={columns} dataSource={data} pagination={{position: ['bottomCenter']}}/>
         </div>
         <style jsx>{`
             .js-error{
@@ -64,8 +74,10 @@ function Page() {
             }
             .options-wrapper{
                 height: 60px;
-                background: lightblue;
+                background: #eee;
                 margin-bottom: 20px;
+                line-height: 60px;
+                text-indent: 1em;
             }
             .content-wrapper{
             }

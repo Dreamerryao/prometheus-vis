@@ -13,16 +13,16 @@ const columns = [
       render: (timestamp) => formatDate(new Date(timestamp*1000)),
     },
     {
-        title: '错误类型',
-        dataIndex: 'errorType'
+        title: '资源地址',
+        dataIndex: 'filename'
     },
     {
-      title: '错误信息',
-      dataIndex: 'message'
+        title: '标签名称',
+        dataIndex: 'tagName'
     },
     {
-      title: '错误栈',
-      dataIndex: 'stack'
+        title: '错误信息',
+        dataIndex: 'errotMessage'
     },
     {
         title: '发生页面',
@@ -40,20 +40,23 @@ const columns = [
   
 // 首页概览
 function Page() {
-    const [data, setDate] = useState(null)
+    const [data, setDate] = useState([])
     useEffect(function updateForm() {
-        http.get("/1360708/v1/api/error/js")
+        http.get("/v1/api/error/resource")
         .then(e=>{
             console.log(e)
-            setDate(e.data)
+            setDate(e.data.map(i=>{
+                i.key = i.id
+                return i
+            }))
         })
     }, [])
     return <div className='js-error'>
         <div className='options-wrapper'>
-
+            共{data.length}条错误
         </div>
         <div className='content-wrapper'>
-            <Table columns={columns} dataSource={data} pagination={false}/>
+            <Table columns={columns} dataSource={data} pagination={{position: ['bottomCenter']}}/>
         </div>
         <style jsx>{`
             .js-error{
@@ -64,8 +67,10 @@ function Page() {
             }
             .options-wrapper{
                 height: 60px;
-                background: lightblue;
+                background: #eee;
                 margin-bottom: 20px;
+                line-height: 60px;
+                text-indent: 1em;
             }
             .content-wrapper{
             }

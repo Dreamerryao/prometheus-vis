@@ -28,10 +28,7 @@ const items = [
         getItem('资源异常', '/resource')
     ]),
     getItem('HTTP请求监控', '/dashboard/http', <BulbOutlined />,),
-    getItem('性能监控', '/dashboard/performence', <DashboardOutlined />, [
-        getItem('页面加载', '/timing'),
-        getItem('页面渲染', '/paint')
-    ]),
+    getItem('性能监控', '/dashboard/performence', <DashboardOutlined />),
     getItem('用户行为监控', '/dashboard/behavior', <ApiOutlined /> ),
 ]
 
