@@ -447,7 +447,7 @@ function Page() {
       <div className='wrapper'>
             <div className='title2'>HTTP请求</div>
             <div className='container'>
-                <div className='behavior-count'>
+                <div className='behavior-count2'>
                     <div className='behavior-count-card count-card2'>
                         <div className='count-card-title2'>请求（ms）</div>
                         <div className='count-card-value2'>2102ms</div>
@@ -627,11 +627,18 @@ function Page() {
               flex-direction: column;
               justify-content: space-around;
           }
+          .behavior-count2{
+            hieght: 300px;
+            display: flex;
+            width: 25%px;
+            flex-direction: column;
+            justify-content: space-around;
+        }
             .dempdualaxes{
               border-left-width: 11px;
               border-left-color: white;
               border-left-style: inset;
-              width: 80%;
+              width: 75%;
             }
             .count-card{
               margin-left: -25px;
