@@ -1,10 +1,15 @@
 import React from 'react'
 import Header from '../../components/Header'
 import Menu from '../../components/Menu'
+import Head from 'next/head'
 
 export default function index({children}) {
     
     return <div className='dashboard'>
+        <Head>
+            <title>监控可视化面板</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <div className='header'>
             <Header className='header'></Header>
         </div>

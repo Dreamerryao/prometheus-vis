@@ -16,3 +16,23 @@ export const formatDate = function(time){
  
     return newTime;         
 }
+// 给数字前面补位
+export const paddingNumber = (n, length, tag='0')=>{
+    let arr = []
+    while(n>0){
+        arr.push(n%10)
+        n = Math.floor(n/10);
+    }
+    while(arr.length < length){
+        arr.push(tag)
+    }
+    return arr.reverse().join('')
+}
+// 生成[min, max)区间的随机数
+export const randomNumber = (min=0, max=1)=>{
+    let {floor, random} = Math
+    return floor(random()*(max-min)+min)
+}
+export const randomColor = ()=>{
+    return `rgb(${randomNumber(0,256)}, ${randomNumber(0,256)}, ${randomNumber(0,256)})`
+}

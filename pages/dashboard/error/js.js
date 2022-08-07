@@ -63,7 +63,15 @@ function Page() {
             共{data.length}条错误
         </div>
         <div className='content-wrapper'>
-            <Table columns={columns} dataSource={data} pagination={{position: ['bottomCenter']}}/>
+            <Table 
+                columns={columns} 
+                dataSource={data} 
+                pagination={{position: ['bottomCenter']}}
+                scroll={{
+                    scrollToFirstRowOnChange: true,
+                    y: '700px'
+                }}
+            />
         </div>
         <style jsx>{`
             .js-error{
@@ -71,6 +79,8 @@ function Page() {
                 height: 100%;
                 padding: 20px;
                 box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
             }
             .options-wrapper{
                 height: 60px;
@@ -80,6 +90,8 @@ function Page() {
                 text-indent: 1em;
             }
             .content-wrapper{
+                flex-grow: 1;
+                overflow: scroll;
             }
         `}</style>
     </div>

@@ -417,10 +417,6 @@ const config1 = {
 }
 // 首页概览
 function Page() {
-    http.get("/1360708/v1/api/behavior")
-    .then(e=>{
-        console.log(e)
-    })
     return <div className='system'>
       <div className='wrapper1'>
       <span className='shouye1'>
