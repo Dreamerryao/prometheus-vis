@@ -188,7 +188,7 @@ const DemoPie1 = () => {
       offset: '-30%',
       content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
       style: {
-        fontSize: 20,
+        fontSize: 17,
         textAlign: 'center',
       },
     },
@@ -238,7 +238,7 @@ const DemoPie2 = () => {
       offset: '-30%',
       content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
       style: {
-        fontSize: 20,
+        fontSize: 17,
         textAlign: 'center',
       },
     },
@@ -251,22 +251,44 @@ const DemoPie2 = () => {
   return <Pie {...config} />;
 };
 const DemoPie3 = () => {
+  const [data1, setData1] = useState([])
+    const [data2, setData2] = useState([])
+    useEffect(()=>{
+        http.get("/v1/api/error/js")
+        .then(e=>{
+            console.log(e)
+            e.data.forEach(i=>{
+                i.key = i.id
+            })
+            setData1(e.data)
+        })
+    }, [])
+    useEffect(()=>{
+      http.get("/v1/api/error/resource")
+      .then(e=>{
+          console.log(e)
+          e.data.forEach(i=>{
+              i.key = i.id
+          })
+          setData2(e.data)
+      })
+  }, [])
   const data = [
-    {
+    /*{
       type: '系统异常',
-      value: 40,
+      value: 0,
     },
     {
       type: '网络异常',
-      value: 40,
-    },
+      value: 0,
+    },*/
     {
       type: 'JS异常',
-      value: 20,
+      value: data1.length,
     },
     {
-      type: '应用异常',
-      value: 20,
+      type: '资源异常',
+      value: data2.length,
     },
   ];
   const config = {
@@ -280,7 +302,7 @@ const DemoPie3 = () => {
       offset: '-30%',
       content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
       style: {
-        fontSize: 20,
+        fontSize: 21,
         textAlign: 'center',
       },
     },
@@ -293,14 +315,33 @@ const DemoPie3 = () => {
   return <Pie {...config} />;
 };
 const DemoPie4 = () => {
+  const [detail1, setDetail1] = useState([])
+  useEffect(()=>{
+    http.get("/v1/api/behavior")
+    .then(e=>{
+        console.log(e)
+        e.data.forEach(i=>{
+            i.key = i.id
+        })
+        setDetail1(e.data)
+    })
+    }, [])
+  var obj={};
+  var uv=[]
+  for(var i=0;i<detail1.length;i++){
+    if(!obj[detail1[i].uuid]){
+      obj[detail1[i].uuid]=1
+      uv.push(detail1[i].uuid)
+    }
+  }
   const data = [
     {
       type: 'PC',
-      value: 2102,
+      value: detail1.length,
     },
     {
       type: 'UV',
-      value: 324,
+      value: uv.length,
     },
   ];
   const config = {
@@ -340,75 +381,65 @@ const config1 = {
           "value": 1100
         },
         {
-          "time": "9时",
+          "time": "12时",
           "type": "pv",
           "value": 1450
         },
         {
-          "time": "9时",
+          "time": "12时",
           "type": "uv",
           "value": 850
         },
         {
-          "time": "10时",
+          "time": "16时",
           "type": "pv",
           "value": 900
         },
         {
-          "time": "10时",
+          "time": "16时",
           "type": "uv",
           "value": 850
         },
         {
-          "time": "11时",
+          "time": "20时",
           "type": "pv",
           "value": 1600
         },
         {
-          "time": "11时",
+          "time": "20时",
           "type": "uv",
           "value": 500
         },
         {
-          "time": "12时",
+          "time": "22时",
           "type": "pv",
           "value": 1400
         },
         {
-          "time": "12时",
+          "time": "22时",
           "type": "uv",
           "value": 900
         },
         {
-          "time": "13时",
+          "time": "0时",
           "type": "pv",
           "value": 1400
         },
         {
-          "time": "13时",
+          "time": "0时",
           "type": "uv",
           "value": 900
         },
         {
-          "time": "14时",
+          "time": "4时",
           "type": "pv",
           "value": 900
         },
         {
-          "time": "14时",
+          "time": "4时",
           "type": "uv",
           "value": 850
         },
-        {
-          "time": "15时",
-          "type": "pv",
-          "value": 1700
-        },
-        {
-          "time": "15时",
-          "type": "uv",
-          "value": 600
-        }
     ],
     xField: 'time',
     yField: 'value',
@@ -417,31 +448,140 @@ const config1 = {
 }
 // 首页概览
 function Page() {
+  const [dataa, setData] = useState([])
+  const [detail, setDetail] = useState([])
+  const [detail1, setDetail1] = useState([])
+  const [detail2, setDetail2] = useState([])
+    useEffect(()=>{
+        http.get("/v1/api/error/js")
+        .then(e=>{
+            console.log(e)
+            e.data.forEach(i=>{
+                i.key = i.id
+            })
+            setData(e.data)
+        })
+}, [])
+    useEffect(()=>{
+      http.get("/v1/api/error/resource")
+      .then(e=>{
+          console.log(e)
+          e.data.forEach(i=>{
+              i.key = i.id
+          })
+          setDetail(e.data)
+        })
+}, [])
+  useEffect(()=>{
+    http.get("/v1/api/behavior")
+    .then(e=>{
+        console.log(e)
+        e.data.forEach(i=>{
+            i.key = i.id
+        })
+        setDetail1(e.data)
+    })
+}, [])
+useEffect(()=>{
+  http.get("/v1/api/http")
+  .then(e1=>{
+      console.log(e1)
+      e1.data.forEach(i=>{
+          i.key = i.id
+      })
+      setDetail2(e1.data)
+  })
+}, [])
+var qq=0;
+for( var i=0;i< detail2.length;i++){
+  qq=Number(qq)+Number(detail2[i].duration);
+}
+var cgl=0;
+for(var i=0;i<detail2.length;i++){
+  if(detail2[i].success){
+    cgl++;
+  }
+}
+  var obj={};
+  var uv=[]
+  for(var i=0;i<detail1.length;i++){
+    if(!obj[detail1[i].uuid]){
+      obj[detail1[i].uuid]=1
+      uv.push(detail1[i])
+    }
+  }
+  var time = new Date();
+  var year = time.getFullYear();
+  var mouth = time.getMonth()+1;
+  var day = time.getDate();
+  //日异常数
+  var dataatime=0;
+  for(var i=0;i<dataa.length;i++){
+  var date = new Date(dataa[i].timestamp*1000)
+  var y = date.getFullYear()
+  var m = date.getMonth()+1
+  var d = date.getDay()
+  if(year == y && mouth == m && day==d){
+    dataatime++;
+  }
+  }
+  for(var i=0;i<detail1.length;i++){
+    var date = new Date(detail1[i].timestamp*1000)
+    var y = date.getFullYear()
+    var m = date.getMonth()+1
+    var d = date.getDay()
+    if(year == y && mouth == m && day==d){
+      dataatime++;
+    }
+    }
+  //日请求数
+  var detail2time=0;
+  for(var i=0;i<detail2.length;i++){
+    var date = new Date(detail2[i].timestamp*1000)
+    var y = date.getFullYear()
+    var m = date.getMonth()+1
+    var d = date.getDay()
+    if(year == y && mouth == m && day==d){
+      detail2time++;
+    }
+    }
+  //日用户量
+  var uvtime=0;
+  for(var i=0;i<uv.length;i++){
+    var date = new Date(uv[i].timestamp*1000)
+    var y = date.getFullYear()
+    var m = date.getMonth()+1
+    var d = date.getDay()
+    if(year == y && mouth == m && day==d){
+      uvtime++;
+    }
+    }
+
     return <div className='system'>
       <div className='wrapper1'>
       <span className='shouye1'>
           <div className='s1'>总异常数：</div>
-          <div className='s2'>66</div>
+          <div className='s2'>{dataa.length+detail.length}</div>
           <div className='s3'>日异常数：</div>
-          <span className='s4'>66</span>
+          <span className='s4'>{dataatime}</span>
         </span>
         <span className='shouye1'>
           <div className='s1'>网络请求个数：</div>
-          <div className='s2'>666</div>
+          <div className='s2'>{detail2.length}</div>
           <div className='s3'>日请求数：</div>
-          <span className='s4'>66</span>
+          <span className='s4'>{detail2time}</span>
         </span>
         <span className='shouye1'>
           <div className='s1'>异常占比：</div>
-          <div className='s2'>66%</div>
+          <div className='s2'>{Math.round(dataa.length/(detail2.length+20)*100)}%</div>
           <div className='s3'>日异常占比：</div>
           <span className='s4'>66</span>
         </span>
         <span className='shouye1'>
-          <div className='s1'>访问量</div>
-          <div className='s2'>66</div>
-          <div className='s3'>日访问量：</div>
-          <span className='s4'>66</span>
+          <div className='s1'>用户个数</div>
+          <div className='s2'>{uv.length}</div>
+          <div className='s3'>日用户量：</div>
+          <span className='s4'>{uvtime}</span>
         </span>
       </div>
       <div className='wrapper'>
@@ -450,7 +590,7 @@ function Page() {
                 <div className='behavior-count2'>
                     <div className='behavior-count-card count-card2'>
                         <div className='count-card-title2'>请求（ms）</div>
-                        <div className='count-card-value2'>2102ms</div>
+                        <div className='count-card-value2'>{Math.round(qq/detail2.length)}ms</div>
                     </div>
                     <div className='behavior-count-card count-card2'>
                         <div className='count-card-title2'>响应（ms）</div>
@@ -458,7 +598,7 @@ function Page() {
                     </div>
                     <div className='behavior-count-card count-card2'>
                         <div className='count-card-title2'>成功率</div>
-                        <div className='count-card-value2'>32%</div>
+                        <div className='count-card-value2'>{Math.round(cgl/(detail2.length)*100)}%</div>
                     </div>
                 </div>
                 <div className='dempdualaxes'>
@@ -474,31 +614,37 @@ function Page() {
             <div className='title1'>设备与异常类型</div>
             <div className='container'>
                 <div className='behavior-count1'>
+                    <div className='D'>
                     <div className='behavior-count-card count-card1'>
                         <div className='count-card-title1'>浏览器占比</div>
                         <div className='d1'>
                         <DemoPie1 />
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
             <div className='container'>
                 <div className='behavior-count1'>
+                    <div className='D'>
                     <div className='behavior-count-card count-card1'>
                         <div className='count-card-title1'>操作系统占比</div>
                         <div className='d1'>
                         <DemoPie2 />
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container1'>
                 <div className='behavior-count1'>
+                    <div className='D'>
                     <div className='behavior-count-card count-card1'>
                         <div className='count-card-title1'>异常类型占比</div>
                         <div className='d1'>
                         <DemoPie3 />
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -511,11 +657,11 @@ function Page() {
                 <div className='behavior-count'>
                     <div className='behavior-count-card count-card'>
                         <div className='count-card-title'>pv总数：</div>
-                        <div className='count-card-value'>2102</div>
+                        <div className='count-card-value'>{detail1.length}</div>
                     </div>
                     <div className='behavior-count-card count-card'>
                         <div className='count-card-title'>uv总数：</div>
-                        <div className='count-card-value'>324</div>
+                        <div className='count-card-value'>{uv.length}</div>
                     </div>
                 </div>
                 <div className='d2'>
@@ -555,7 +701,7 @@ function Page() {
           }
             .wrapper .title1{
               color: black;
-              width: 490px;
+              width: 505px;
               margin-top: 0px;
               font-size: 18px;
               text-align: center;
@@ -600,6 +746,15 @@ function Page() {
                 justify-content: space-between;
                 flex-wrap: wrap;
             }
+            .wrapper .container1{
+              margin-right: 20px;
+              width: 100%;
+              display: flex;
+              padding: 20px;
+              box-sizing: border-box;
+              justify-content: space-between;
+              flex-wrap: wrap;
+          }
             .wrapper2 .container{
               width: 100%;
               display: flex;
@@ -660,7 +815,7 @@ function Page() {
             }
             .count-card1{
               background: white;
-              width: 320px;
+              width: 100%;
               height: 318px;
               padding: 10px;
               -webkit-box-sizing: border-box;
@@ -773,6 +928,9 @@ function Page() {
           }
           .D4{
             width: 125%;
+          }
+          .D{
+            width: 199%
           }
         `}</style>
     </div>
