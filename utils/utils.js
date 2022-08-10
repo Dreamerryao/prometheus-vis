@@ -36,3 +36,22 @@ export const randomNumber = (min=0, max=1)=>{
 export const randomColor = ()=>{
     return `rgb(${randomNumber(0,256)}, ${randomNumber(0,256)}, ${randomNumber(0,256)})`
 }
+
+// 判断时间是否在某个区间
+// export const judgeTime = (date, startDate, endDate)=>{
+//     startDate && startDate = new Date().getTime()
+//     if(!(date instanceof Date)) date = new Date(date)
+//     if(date.getTime() >= startDate.getTime() && date.getTime() < endDate.getTime()){
+//         return true
+//     }
+//     return false
+// }
+// 判断时间是否在某个区间
+// export const judgeTime = (date, startDate, endDate)=>{
+//     startDate && startDate = new Date().getTime()
+//     if(!(date instanceof Date)) date = new Date(date)
+//     if(date.getTime() >= startDate.getTime() && date.getTime() < endDate.getTime()){
+//         return true
+//     }
+//     return false
+// }next

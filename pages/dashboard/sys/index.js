@@ -463,8 +463,8 @@ function Page() {
                 </div>
                 <div className='dempdualaxes'>
                   <div className='ddl'>
-               <DemoDualAxes />
-               </div>
+                    <DemoDualAxes />
+                  </div>
                 </div>
             </div>
         </div>
