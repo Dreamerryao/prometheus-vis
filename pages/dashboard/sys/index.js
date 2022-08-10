@@ -381,62 +381,162 @@ const config1 = {
           "value": 1100
         },
         {
-          "time": "12时",
+          "time": "9时",
           "type": "pv",
           "value": 1450
         },
         {
-          "time": "12时",
+          "time": "9时",
           "type": "uv",
           "value": 850
         },
         {
-          "time": "16时",
+          "time": "10时",
           "type": "pv",
           "value": 900
         },
         {
-          "time": "16时",
+          "time": "10时",
           "type": "uv",
           "value": 850
         },
         {
-          "time": "20时",
+          "time": "11时",
           "type": "pv",
           "value": 1600
         },
         {
-          "time": "20时",
+          "time": "11时",
           "type": "uv",
           "value": 500
         },
         {
-          "time": "22时",
+          "time": "12时",
           "type": "pv",
           "value": 1400
         },
         {
-          "time": "22时",
+          "time": "12时",
           "type": "uv",
           "value": 900
         },
         {
-          "time": "0时",
+          "time": "13时",
           "type": "pv",
           "value": 1400
         },
         {
-          "time": "0时",
+          "time": "13时",
           "type": "uv",
           "value": 900
         },
         {
-          "time": "4时",
+          "time": "14时",
           "type": "pv",
           "value": 900
         },
         {
-          "time": "4时",
+          "time": "14时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "15时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "15时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "16时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "16时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "17时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "17时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "18时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "18时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "19时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "19时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "20时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "20时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "21时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "21时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "22时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "22时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "23时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "23时",
+          "type": "uv",
+          "value": 850
+        },
+        {
+          "time": "24时",
+          "type": "pv",
+          "value": 850
+        },
+        {
+          "time": "24时",
           "type": "uv",
           "value": 850
         },
