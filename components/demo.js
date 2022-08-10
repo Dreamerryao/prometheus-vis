@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/plots';
 
-export default demo = () => {
+const demo = () => {
   const data = [
     {
       type: '分类一',
@@ -44,4 +44,5 @@ export default demo = () => {
     ],
   };
   return <Pie {...config} />;
-};
+}
+export default demo
