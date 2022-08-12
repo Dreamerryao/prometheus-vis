@@ -13,7 +13,6 @@ export const formatDate = function(time){
                 (hour < 10? '0' + hour : hour) + ':' +
                 (min < 10? '0' + min : min) + ':' +
                 (sec < 10? '0' + sec : sec);
- 
     return newTime;         
 }
 // 给数字前面补位
