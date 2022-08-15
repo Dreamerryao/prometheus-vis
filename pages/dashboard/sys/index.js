@@ -1525,6 +1525,7 @@ function Page() {
 		seriesField: 'type',
 		isGroup: true,
 	}
+	console.log("config1", config1)
 	var qq = 0
 	for (var i = 0; i < detail2.length; i++) {
 		qq = Number(qq) + Number(detail2[i].duration)
