@@ -9,7 +9,10 @@ import {
 import {formatDate} from '../../../utils/utils'
 const HttpDetailModal = (props)=>{
     const [data, setData] = useState(props.detail)
-    if(!props.detail) return <></>
+    useEffect(()=>{
+        setData(props.detail)
+    }, [props.detail])
+    if(!data) return <></>
     return (
     <Modal visible="true" footer={null} onCancel={()=>props.setDetail(null)}>
         <Descriptions bordered column={1}>
