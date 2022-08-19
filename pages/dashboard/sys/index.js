@@ -588,7 +588,6 @@ const Ap1 = () => (
 	<Card
 		style={{
 			height: 140,
-			width: 300,
 			'border-radius': 20,
 		}}
 		bodyStyle={{
@@ -619,7 +618,6 @@ const Ap2 = () => (
 	<Card
 		style={{
 			height: 140,
-			width: 300,
 			'border-radius': 20,
 		}}
 		bodyStyle={{
@@ -650,7 +648,6 @@ const Ap3 = (props) => (
 	<Card
 		style={{
 			height: 140,
-			width: 300,
 			'border-radius': 20,
 		}}
 		bodyStyle={{
@@ -937,7 +934,7 @@ const App4 = (props) => (
 					font-size: 20px;
 				}
 				.b {
-					width: 109%;
+					width: 100%;
 					height: 78%;
 					margin-left: -10px;
 					margin-top: -12px;
@@ -986,7 +983,7 @@ const App5 = (props) => (
 					font-size: 20px;
 				}
 				.b {
-					width: 109%;
+					width: 100%;
 					height: 78%;
 					margin-left: -10px;
 					margin-top: -12px;
@@ -1757,7 +1754,7 @@ function Page() {
 				.behavior-count2 {
 					hieght: 300px;
 					display: flex;
-					width: 25%px;
+					width: 27%;
 					flex-direction: column;
 					justify-content: space-between;
 				}
