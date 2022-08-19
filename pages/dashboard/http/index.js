@@ -51,7 +51,9 @@ const HttpLogTable = (props)=>{
             title: "日期",
             dataIndex: 'timestamp',
             key: 'timestamp',
-            render: (timestamp)=>formatDate(timestamp*1000)
+            render: (timestamp)=>formatDate(timestamp*1000),
+            sorter: (a, b) => a.timestamp - b.timestamp,
+            defaultSortOrder: "descend"
         },
         {
             title: "日志类型",

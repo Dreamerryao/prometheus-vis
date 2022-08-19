@@ -163,7 +163,9 @@ function Page() {
     }
     return <div className='performence'>
         <div className='url-list-wrapper'>
-            <div className='url-list-wrapper-header'></div>
+            <div className='url-list-wrapper-header'>
+                全部地址
+            </div>
             <div className='url-list'>
                 {urlList.map(i=>
                     <Popover content={i.url} placement="topRight" key={i.id}>
@@ -239,6 +241,9 @@ function Page() {
             }
             .paint-chart{
                 height: 280px;
+            }
+            .url-list-wrapper-header{
+                margin:8px;
             }
         `}</style>
     </div>

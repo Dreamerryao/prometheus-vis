@@ -35,7 +35,7 @@ const UserList = (props)=>{
         dataSource={props.users}
         header={
             <span className='item-wrapper' onClick={(e)=>props.setUserIndex(undefined)}>
-                全部
+                全部访客
             </span>
         }
         renderItem={(user) => (
