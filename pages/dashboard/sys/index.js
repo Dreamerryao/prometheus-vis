@@ -3,6 +3,7 @@ import http from '../../../utils/http'
 import Layout from '../layout'
 import {Column, DualAxes, Pie} from '@ant-design/plots'
 import {Card} from 'antd'
+import {parseUserAgent} from '../../../utils/detect-browser'
 //获取
 var date = new Date()
 var mouth = date.getMonth(date) + 1
@@ -86,14 +87,14 @@ const shzhou = () => {
 }
 //获取上周pv/uv数数组
 const szhoupv = (detail1) => {
-  var szpv = [0, 0, 0, 0, 0, 0, 0]
+	var szpv = [0, 0, 0, 0, 0, 0, 0]
 	var shang = shzhou()
 	//如果没有跨月
 	if (mouth1.length == 1) {
 		for (var i = 0; i < detail1.length; i++) {
-      var date = new Date(detail1[i].timestamp*1000)
+			var date = new Date(detail1[i].timestamp * 1000)
 			var year11 = date.getFullYear()
-			var mouth11 = date.getMonth()+1
+			var mouth11 = date.getMonth() + 1
 			var day11 = date.getDate()
 			if (year11 == year && mouth11 == mouth1[0] && day11 == shang[0]) {
 				szpv[0]++
@@ -136,32 +137,36 @@ const szhoupv = (detail1) => {
 			}
 		}
 	}
-  return szpv
+	return szpv
 }
 //获取上周pv数组
-var szpv=[0,0,0,0,0,0,0]
-const pvvv = (detail1) =>{
-  var a=szhoupv(detail1)
-  for(var i=0;i<a.length;i++){
-    szpv[i]=a[i]
-  }
+var szpv = [0, 0, 0, 0, 0, 0, 0]
+const pvvv = (detail1) => {
+	var a = szhoupv(detail1)
+	for (var i = 0; i < a.length; i++) {
+		szpv[i] = a[i]
+	}
 }
 //获取上周uv数组
-var szuv=[0,0,0,0,0,0,0]
-const uvvv = (uv) =>{
-  var a=szhoupv(uv)
-  for(var i=0;i<a.length;i++){
-    szuv[i]=a[i]
-  }
+var szuv = [0, 0, 0, 0, 0, 0, 0]
+const uvvv = (uv) => {
+	var a = szhoupv(uv)
+	for (var i = 0; i < a.length; i++) {
+		szuv[i] = a[i]
+	}
 }
 
 //判断是否为当前日期
 const panduan = (detail1) => {
-  var data = new Date(detail1.timestamp*1000)
-	if(!(data.getFullYear()==new Date().getFullYear()
-    &&((data.getMonth())+1)==(new Date().getMonth()+1)
-    &&data.getDate()==new Date().getDate()))
-    return false
+	var data = new Date(detail1.timestamp * 1000)
+	if (
+		!(
+			data.getFullYear() == new Date().getFullYear() &&
+			data.getMonth() + 1 == new Date().getMonth() + 1 &&
+			data.getDate() == new Date().getDate()
+		)
+	)
+		return false
 	return true
 }
 //统计今日pu，uv时刻数
@@ -200,190 +205,59 @@ const jisuan = (pv, uv) => {
 }
 //szpv=[20,25,36,24,49,45,33]
 //szuv=[65,44,31,44,45,47,63]
-const DemoColumn1 = () => {
-	const data = [
-		{
-			type: '上周一',
-			sales: szpv[6],
-		},
-		{
-			type: '上周二',
-			sales: szpv[5],
-		},
-		{
-			type: '上周三',
-			sales: szpv[4],
-		},
-		{
-			type: '上周四',
-			sales: szpv[3],
-		},
-		{
-			type: '上周五',
-			sales: szpv[2],
-		},
-		{
-			type: '上周六',
-			sales: szpv[1],
-		},
-		{
-			type: '上周日',
-			sales: szpv[0],
-		},
-	]
-	const config = {
-		data,
-		xField: 'type',
-		yField: 'sales',
-		columnWidthRatio: 0.7,
-		xAxis: {
-			label: {
-				autoHide: true,
-				autoRotate: false,
-			},
-		},
-		meta: {
-			type: {
-				alias: '类别',
-			},
-			sales: {
-				alias: 'pv数',
-			},
-		},
-		xAxis: {
-			grid: null,
-			line: null,
-			title: null,
-			label: null,
-		},
-		yAxis: {
-			grid: null,
-			line: null,
-			title: null,
-			label: null,
-		},
-	}
-	return <Column {...config} />
-}
-const DemoColumn2 = () => {
-	const data = [
-		{
-			type: '上周一',
-			sales: szuv[0],
-		},
-		{
-			type: '上周二',
-			sales: szuv[1],
-		},
-		{
-			type: '上周三',
-			sales: szuv[2],
-		},
-		{
-			type: '上周四',
-			sales: szuv[3],
-		},
-		{
-			type: '上周五',
-			sales: szuv[4],
-		},
-		{
-			type: '上周六',
-			sales: szuv[5],
-		},
-		{
-			type: '上周日',
-			sales: szuv[6],
-		},
-	]
-	const config = {
-		data,
-		xField: 'type',
-		yField: 'sales',
-		columnWidthRatio: 0.7,
-		xAxis: {
-			label: {
-				autoHide: true,
-				autoRotate: false,
-			},
-		},
-		meta: {
-			type: {
-				alias: '类别',
-			},
-			sales: {
-				alias: '销售额',
-			},
-		},
-		xAxis: {
-			grid: null,
-			line: null,
-			title: null,
-			label: null,
-		},
-		yAxis: {
-			grid: null,
-			line: null,
-			title: null,
-			label: null,
-		},
-	}
-	return <Column {...config} />
-}
 const A = (props) => {
-
-  return (
-    <Card
-    style={{
-			width: '33%',
-			'border-style': 'solid',
-			background: 'white',
-			'margin-top': -18,
-      'margin-bottom': 40,
-			'margin-right': 50,
-      'border-radius': 20,
-		}}
-    bodyStyle={{
-      height: 211,
-      'border-radius': 20,
-			'box-shadow': '0px 0px 5px black',
-    }}
-      hoverable={true}
-    >
-      <p className="p1">{props.title}</p>
-      <p className="p2">{props.a}</p>
-      <span className="p3">{props.subtitle}</span>
-      <span className="p4">{props.b}</span>
-      <style jsx>
-        {`
-          .p1 {
-            font-size: 16px;
-            display: inline;
-            font-weight: bolder;
-            color: darkcyan;
-          }
-          .p2 {
-            margin-left: 85px;
-            margin-top: 10px;
-            font-size: 41px;
-            height: 76px;
-            margin-right: 20px;
-            margin-bottom: 0px;
-          }
-          .p3 {
-            margin-left: 2px;
-            margin-top: 20px;
-            font-size: 17px;
-            display: inline;
-            margin-right: 20px;
-          }
-          .p4 {
-            font-size: 22px;
-          }
-        `}
-      </style>
-    </Card>
-  )
+	return (
+		<Card
+			style={{
+				width: '33%',
+				'border-style': 'solid',
+				background: 'white',
+				'margin-top': -18,
+				'margin-bottom': 40,
+				'margin-right': 50,
+				'border-radius': 20,
+			}}
+			bodyStyle={{
+				height: 211,
+				'border-radius': 20,
+				'box-shadow': '0px 0px 5px black',
+			}}
+			hoverable={true}
+		>
+			<p className="p1">{props.title}</p>
+			<p className="p2">{props.a}</p>
+			<span className="p3">{props.subtitle}</span>
+			<span className="p4">{props.b}</span>
+			<style jsx>
+				{`
+					.p1 {
+						font-size: 16px;
+						display: inline;
+						font-weight: bolder;
+						color: darkcyan;
+					}
+					.p2 {
+						margin-left: 85px;
+						margin-top: 10px;
+						font-size: 41px;
+						height: 76px;
+						margin-right: 20px;
+						margin-bottom: 0px;
+					}
+					.p3 {
+						margin-left: 2px;
+						margin-top: 20px;
+						font-size: 17px;
+						display: inline;
+						margin-right: 20px;
+					}
+					.p4 {
+						font-size: 22px;
+					}
+				`}
+			</style>
+		</Card>
+	)
 }
 const A1 = (props) => (
 	<Card
@@ -392,15 +266,15 @@ const A1 = (props) => (
 			'border-style': 'solid',
 			background: 'white',
 			'margin-top': -18,
-      'margin-bottom': 40,
+			'margin-bottom': 40,
 			'margin-right': 50,
-      'border-radius': 20,
+			'border-radius': 20,
 		}}
-    bodyStyle={{
-      height: 211,
-      'border-radius': 20,
+		bodyStyle={{
+			height: 211,
+			'border-radius': 20,
 			'box-shadow': '0px 0px 5px black',
-    }}
+		}}
 		hoverable={true}
 	>
 		<p className="p1">总异常数</p>
@@ -599,18 +473,18 @@ const Ap1 = () => (
 		hoverable={true}
 	>
 		<p className="a">请求（ms）</p>
-		<p className='b'>112</p>
+		<p className="b">112</p>
 		<style jsx>
 			{`
-				.a{
-          font-size: 25px;
-          font-weight: bold;
+				.a {
+					font-size: 25px;
+					font-weight: bold;
 				}
-        .b{
-          font-size: 25px;
-          margin-left: 160px;
-          margin-top: -15px;
-        }
+				.b {
+					font-size: 25px;
+					margin-left: 160px;
+					margin-top: -15px;
+				}
 			`}
 		</style>
 	</Card>
@@ -630,18 +504,18 @@ const Ap2 = () => (
 		hoverable={true}
 	>
 		<p className="a">响应（ms）</p>
-		<p className='b'>112</p>
+		<p className="b">112</p>
 		<style jsx>
 			{`
-				.a{
-          font-size: 25px;
-          font-weight: bold;
+				.a {
+					font-size: 25px;
+					font-weight: bold;
 				}
-        .b{
-          font-size: 25px;
-          margin-left: 160px;
-          margin-top: -15px;
-        }
+				.b {
+					font-size: 25px;
+					margin-left: 160px;
+					margin-top: -15px;
+				}
 			`}
 		</style>
 	</Card>
@@ -661,102 +535,21 @@ const Ap3 = (props) => (
 		hoverable={true}
 	>
 		<p className="a">成功率</p>
-		<p className='b'>{props.a}%</p>
+		<p className="b">{props.a}%</p>
 		<style jsx>
 			{`
-				.a{
-          font-size: 25px;
-          font-weight: bold;
+				.a {
+					font-size: 25px;
+					font-weight: bold;
 				}
-        .b{
-          font-size: 25px;
-          margin-left: 160px;
-          margin-top: -15px;
-        }
+				.b {
+					font-size: 25px;
+					margin-left: 160px;
+					margin-top: -15px;
+				}
 			`}
 		</style>
 	</Card>
-)
-const App1 = () => (
-	<>
-		<Card
-			title="浏览器占比"
-			style={{
-				'border-radius': 20,
-				height: 470,
-				'box-shadow': '0px 0px 5px black',
-			}}
-			headStyle={{
-				'font-weight': 'bold',
-				'text-align': 'center',
-				'font-size': 25,
-			}}
-			bodyStyle={{
-				'margin-top': -25,
-			}}
-			hoverable={true}
-		>
-			<div className="ap1">
-				<DemoPie1 />
-			</div>
-			<style jsx>
-				{`
-					.ap1 {
-					}
-				`}
-			</style>
-		</Card>
-	</>
-)
-const App2 = () => (
-	<>
-		<Card
-			title="操作系统占比"
-			style={{
-				'border-radius': 20,
-				height: 470,
-				'box-shadow': '0px 0px 5px black',
-			}}
-			headStyle={{
-				'font-weight': 'bold',
-				'text-align': 'center',
-				'font-size': 25,
-			}}
-			bodyStyle={{
-				'margin-top': -25,
-			}}
-			hoverable={true}
-		>
-			<div>
-				<DemoPie2 />
-			</div>
-		</Card>
-	</>
-)
-const App3 = () => (
-	<>
-		<Card
-			title="异常占比"
-			style={{
-				'border-radius': 20,
-				height: 470,
-				'box-shadow': '0px 0px 5px black',
-			}}
-			headStyle={{
-				'font-weight': 'bold',
-				'text-align': 'center',
-				'font-size': 25,
-			}}
-			bodyStyle={{
-				'margin-top': -25,
-			}}
-			hoverable={true}
-		>
-			<div>
-				<DemoPie3 />
-			</div>
-		</Card>
-	</>
 )
 const DemoDualAxes = () => {
 	const uvBillData = [
@@ -908,105 +701,233 @@ const DemoDualAxes = () => {
 	}
 	return <DualAxes {...config} />
 }
-const App4 = (props) => (
-	<Card
-		style={{
-			height: '40%',
-			width: '100%',
-			'border-radius': 20,
-		}}
-		bodyStyle={{
-			height: '100%',
-			'border-radius': 20,
-			'box-shadow': '0px 0px 5px black',
-		}}
-		hoverable={true}
-	>
-		<p className="a">pv数</p>
-		<div className="b">
-			<DemoColumn1 />
-		</div>
-		<div className="c">总pv数：</div>
-		<p className="d">{props.a}</p>
-		<style jsx>
-			{`
-				.a {
-					font-weight: bold;
-					margin-top: -15px;
-					margin-bottom: 1em;
-					font-size: 20px;
-				}
-				.b {
-					width: 109%;
-					height: 78%;
-					margin-left: -10px;
-					margin-top: -12px;
-				}
-				.c {
-					font-size: 18px;
-					margin-top: -15px;
-					color: cadetblue;
-				}
-				.d {
-					font-size: 18px;
-					margin-top: -28px;
-					margin-left: 80px;
-					margin-bottom: 1em;
-				}
-			`}
-		</style>
-	</Card>
-)
-const App5 = (props) => (
-	<Card
-		style={{
-			height: '40%',
-			width: '100%',
-			'border-radius': 20,
-		}}
-		bodyStyle={{
-			height: '100%',
-			'border-radius': 20,
-			'box-shadow': '0px 0px 5px black',
-		}}
-		hoverable={true}
-	>
-		<p className="a">uv数</p>
-		<div className="b">
-			<DemoColumn2 />
-		</div>
-		<div className="c">总uv数：</div>
-		<p className="d">{props.a}</p>
-		<style jsx>
-			{`
-				.a {
-					font-weight: bold;
-					margin-top: -15px;
-					margin-bottom: 1em;
-					font-size: 20px;
-				}
-				.b {
-					width: 109%;
-					height: 78%;
-					margin-left: -10px;
-					margin-top: -12px;
-				}
-				.c {
-					font-size: 18px;
-					margin-top: -15px;
-					color: cadetblue;
-				}
-				.d {
-					font-size: 18px;
-					margin-top: -28px;
-					margin-left: 80px;
-					margin-bottom: 1em;
-				}
-			`}
-		</style>
-	</Card>
-)
-const DemoPie1 = () => {
+const PvColumn = (props) => {
+	const data = [
+		{
+			type: '上周一',
+			sales: szpv[6],
+		},
+		{
+			type: '上周二',
+			sales: szpv[5],
+		},
+		{
+			type: '上周三',
+			sales: szpv[4],
+		},
+		{
+			type: '上周四',
+			sales: szpv[3],
+		},
+		{
+			type: '上周五',
+			sales: szpv[2],
+		},
+		{
+			type: '上周六',
+			sales: szpv[1],
+		},
+		{
+			type: '上周日',
+			sales: szpv[0],
+		},
+	]
+	const config = {
+		data,
+		xField: 'type',
+		yField: 'sales',
+		columnWidthRatio: 0.7,
+		xAxis: {
+			label: {
+				autoHide: true,
+				autoRotate: false,
+			},
+		},
+		meta: {
+			type: {
+				alias: '类别',
+			},
+			sales: {
+				alias: 'pv数',
+			},
+		},
+		xAxis: {
+			grid: null,
+			line: null,
+			title: null,
+			label: null,
+		},
+		yAxis: {
+			grid: null,
+			line: null,
+			title: null,
+			label: null,
+		},
+	}
+	return (
+		<Card
+			style={{
+				height: '40%',
+				width: '100%',
+				'border-radius': 20,
+			}}
+			bodyStyle={{
+				height: '100%',
+				'border-radius': 20,
+				'box-shadow': '0px 0px 5px black',
+			}}
+			hoverable={true}
+		>
+			<p className="a">pv数</p>
+			<div className="b">
+				<Column {...config} />
+			</div>
+			<div className="c">总pv数：</div>
+			<p className="d">{props.a}</p>
+			<style jsx>
+				{`
+					.a {
+						font-weight: bold;
+						margin-top: -15px;
+						margin-bottom: 1em;
+						font-size: 20px;
+					}
+					.b {
+						width: 109%;
+						height: 78%;
+						margin-left: -10px;
+						margin-top: -12px;
+					}
+					.c {
+						font-size: 18px;
+						margin-top: -15px;
+						color: cadetblue;
+					}
+					.d {
+						font-size: 18px;
+						margin-top: -28px;
+						margin-left: 80px;
+						margin-bottom: 1em;
+					}
+				`}
+			</style>
+		</Card>
+	)
+}
+const UvColumn = (props) => {
+	const data = [
+		{
+			type: '上周一',
+			sales: szuv[0],
+		},
+		{
+			type: '上周二',
+			sales: szuv[1],
+		},
+		{
+			type: '上周三',
+			sales: szuv[2],
+		},
+		{
+			type: '上周四',
+			sales: szuv[3],
+		},
+		{
+			type: '上周五',
+			sales: szuv[4],
+		},
+		{
+			type: '上周六',
+			sales: szuv[5],
+		},
+		{
+			type: '上周日',
+			sales: szuv[6],
+		},
+	]
+	const config = {
+		data,
+		xField: 'type',
+		yField: 'sales',
+		columnWidthRatio: 0.7,
+		xAxis: {
+			label: {
+				autoHide: true,
+				autoRotate: false,
+			},
+		},
+		meta: {
+			type: {
+				alias: '类别',
+			},
+			sales: {
+				alias: '销售额',
+			},
+		},
+		xAxis: {
+			grid: null,
+			line: null,
+			title: null,
+			label: null,
+		},
+		yAxis: {
+			grid: null,
+			line: null,
+			title: null,
+			label: null,
+		},
+	}
+	return (
+		<Card
+			style={{
+				height: '40%',
+				width: '100%',
+				'border-radius': 20,
+			}}
+			bodyStyle={{
+				height: '100%',
+				'border-radius': 20,
+				'box-shadow': '0px 0px 5px black',
+			}}
+			hoverable={true}
+		>
+			<p className="a">uv数</p>
+			<div className="b">
+				<Column {...config} />
+			</div>
+			<div className="c">总uv数：</div>
+			<p className="d">{props.a}</p>
+			<style jsx>
+				{`
+					.a {
+						font-weight: bold;
+						margin-top: -15px;
+						margin-bottom: 1em;
+						font-size: 20px;
+					}
+					.b {
+						width: 109%;
+						height: 78%;
+						margin-left: -10px;
+						margin-top: -12px;
+					}
+					.c {
+						font-size: 18px;
+						margin-top: -15px;
+						color: cadetblue;
+					}
+					.d {
+						font-size: 18px;
+						margin-top: -28px;
+						margin-left: 80px;
+						margin-bottom: 1em;
+					}
+				`}
+			</style>
+		</Card>
+	)
+}
+const CountPie = (props) => {
 	const data = [
 		{
 			type: 'Edge',
@@ -1027,119 +948,7 @@ const DemoPie1 = () => {
 	]
 	const config = {
 		appendPadding: 10,
-		data,
-		angleField: 'value',
-		colorField: 'type',
-		radius: 0.9,
-		label: {
-			type: 'inner',
-			offset: '-30%',
-			content: ({percent}) => `${(percent * 100).toFixed(0)}%`,
-			style: {
-				fontSize: 17,
-				textAlign: 'center',
-			},
-		},
-		interactions: [
-			{
-				type: 'element-active',
-			},
-		],
-	}
-	return <Pie {...config} />
-}
-const DemoPie2 = () => {
-	const data = [
-		{
-			type: 'windows',
-			value: 40,
-		},
-		{
-			type: 'Linux',
-			value: 40,
-		},
-		{
-			type: 'mac',
-			value: 20,
-		},
-		{
-			type: 'ios',
-			value: 20,
-		},
-		{
-			type: 'android',
-			value: 20,
-		},
-		{
-			type: '华为',
-			value: 20,
-		},
-	]
-	const config = {
-		appendPadding: 10,
-		data,
-		angleField: 'value',
-		colorField: 'type',
-		radius: 0.9,
-		label: {
-			type: 'inner',
-			offset: '-30%',
-			content: ({percent}) => `${(percent * 100).toFixed(0)}%`,
-			style: {
-				fontSize: 17,
-				textAlign: 'center',
-			},
-		},
-		interactions: [
-			{
-				type: 'element-active',
-			},
-		],
-	}
-	return <Pie {...config} />
-}
-const DemoPie3 = () => {
-	const [data1, setData1] = useState([])
-	const [data2, setData2] = useState([])
-	useEffect(() => {
-		http.get('/v1/api/error/js').then((e) => {
-			console.log(e)
-			e.data.forEach((i) => {
-				i.key = i.id
-			})
-			setData1(e.data)
-		})
-	}, [])
-	useEffect(() => {
-		http.get('/v1/api/error/resource').then((e) => {
-			console.log(e)
-			e.data.forEach((i) => {
-				i.key = i.id
-			})
-			setData2(e.data)
-		})
-	}, [])
-	const data = [
-		/*{
-      type: '系统异常',
-      value: 0,
-    },
-    {
-      type: '网络异常',
-      value: 0,
-    },*/
-		{
-			type: 'JS异常',
-			value: data1.length,
-		},
-		{
-			type: '资源异常',
-			value: data2.length,
-		},
-	]
-	const config = {
-		appendPadding: 10,
-		data,
+		data: props.data ? props.data : data,
 		angleField: 'value',
 		colorField: 'type',
 		radius: 0.9,
@@ -1158,59 +967,31 @@ const DemoPie3 = () => {
 			},
 		],
 	}
-	return <Pie {...config} />
-}
-const DemoPie4 = () => {
-	const [detail1, setDetail1] = useState([])
-	useEffect(() => {
-		http.get('/v1/api/behavior').then((e) => {
-			console.log(e)
-			e.data.forEach((i) => {
-				i.key = i.id
-			})
-			setDetail1(e.data)
-		})
-	}, [])
-	var obj = {}
-	var uv = []
-	for (var i = 0; i < detail1.length; i++) {
-		if (!obj[detail1[i].uuid]) {
-			obj[detail1[i].uuid] = 1
-			uv.push(detail1[i].uuid)
-		}
-	}
-	const data = [
-		{
-			type: 'PC',
-			value: detail1.length,
-		},
-		{
-			type: 'UV',
-			value: uv.length,
-		},
-	]
-	const config = {
-		appendPadding: 10,
-		data,
-		angleField: 'value',
-		colorField: 'type',
-		radius: 0.9,
-		label: {
-			type: 'inner',
-			offset: '-30%',
-			content: ({percent}) => `${(percent * 100).toFixed(0)}%`,
-			style: {
-				fontSize: 20,
-				textAlign: 'center',
-			},
-		},
-		interactions: [
-			{
-				type: 'element-active',
-			},
-		],
-	}
-	return <Pie {...config} />
+	return (
+		<>
+			<Card
+				title={props.title}
+				style={{
+					borderRadius: 20,
+					height: 470,
+					boxShadow: '0px 0px 5px black',
+				}}
+				headStyle={{
+					fontWeight: 'bold',
+					textAlign: 'center',
+					fontSize: 25,
+				}}
+				bodyStyle={{
+					marginTop: -25,
+				}}
+				hoverable={true}
+			>
+				<div>
+					<Pie {...config} />
+				</div>
+			</Card>
+		</>
+	)
 }
 // 首页概览
 function Page() {
@@ -1218,20 +999,41 @@ function Page() {
 	const [detail, setDetail] = useState([])
 	const [detail2, setDetail2] = useState([])
 	const [detail1, setDetail1] = useState([])
+	const [browserData, setBrowserData] = useState([])
+	const [osData, setOsData] = useState([])
+
 	///v1/api/behavior
 	useEffect(() => {
 		http.get('/v1/api/behavior').then((e) => {
-			console.log(e)
+			let data = e.data
+			let browserData = {}
+			let osData = {}
+			window.arr = e.data
+			window.parseUserAgent = parseUserAgent
 			e.data.forEach((i) => {
 				i.key = i.id
 			})
-			setDetail1(e.data)
+			setDetail1(data)
+			data.forEach((i) => {
+				let info = parseUserAgent(i.userAgent)
+				browserData[info.name] = browserData[info.name]
+					? browserData[info.name] + 1
+					: 1
+				osData[info.os] = osData[info.os] ? osData[info.os] + 1 : 1
+			})
+			browserData = Object.keys(browserData).map((i) => {
+				return {type: i, value: browserData[i]}
+			})
+			osData = Object.keys(osData).map((i) => {
+				return {type: i, value: osData[i]}
+			})
+			setBrowserData(browserData)
+			setOsData(osData)
 		})
 	}, [])
 	///v1/api/error/js
 	useEffect(() => {
 		http.get('/v1/api/error/js').then((e) => {
-			console.log(e)
 			e.data.forEach((i) => {
 				i.key = i.id
 			})
@@ -1241,7 +1043,6 @@ function Page() {
 	///v1/api/error/resource
 	useEffect(() => {
 		http.get('/v1/api/error/resource').then((e) => {
-			console.log(e)
 			e.data.forEach((i) => {
 				i.key = i.id
 			})
@@ -1251,7 +1052,6 @@ function Page() {
 	///v1/api/http
 	useEffect(() => {
 		http.get('/v1/api/http').then((e1) => {
-			console.log(e1)
 			e1.data.forEach((i) => {
 				i.key = i.id
 			})
@@ -1525,7 +1325,6 @@ function Page() {
 		seriesField: 'type',
 		isGroup: true,
 	}
-	console.log("config1", config1)
 	var qq = 0
 	for (var i = 0; i < detail2.length; i++) {
 		qq = Number(qq) + Number(detail2[i].duration)
@@ -1568,15 +1367,28 @@ function Page() {
 	}
 	return (
 		<div className="system">
-      <div>{pvvv(detail1)}{uvvv(uv)}</div>
+			<div>
+				{pvvv(detail1)}
+				{uvvv(uv)}
+			</div>
 			<div className="A1">
-				<A title="总异常数：" subtitle="日异常数：" a={dataa.length + detail.length} b={dataatime} />
-				<A title="网络请求个数：" subtitle="日请求数：" a={detail2.length} b={detail2time} />
-				<A 
-          title="总uv占比："
-          subtitle="日uv占比："
-					a={Math.round((uv.length / detail1.length) * 100)+"%"}
-					b={Math.round(jisuan(tongji1(detail1),tongji2(uv)))+"%"}
+				<A
+					title="总异常数："
+					subtitle="日异常数："
+					a={dataa.length + detail.length}
+					b={dataatime}
+				/>
+				<A
+					title="网络请求个数："
+					subtitle="日请求数："
+					a={detail2.length}
+					b={detail2time}
+				/>
+				<A
+					title="总uv占比："
+					subtitle="日uv占比："
+					a={Math.round((uv.length / detail1.length) * 100) + '%'}
+					b={Math.round(jisuan(tongji1(detail1), tongji2(uv))) + '%'}
 				/>
 				<A title="总用户量：" subtitle="日用户量：" a={uv.length} b={uvtime} />
 			</div>
@@ -1585,7 +1397,7 @@ function Page() {
 					<div className="behavior-count2">
 						<Ap1 />
 						<Ap2 />
-						<Ap3 a={Math.round(cgl/(detail2.length)*100)}/>
+						<Ap3 a={Math.round((cgl / detail2.length) * 100)} />
 					</div>
 					<div className="dempdualaxes">
 						<div className="ddl">
@@ -1599,20 +1411,32 @@ function Page() {
 			<br></br>
 			<div className="wrapper">
 				<div className="ap1">
-					<App1 />
+					<CountPie title="浏览器占比" data={browserData} />
 				</div>
 				<div className="ap1">
-					<App2 />
+					<CountPie title="操作系统占比" data={osData} />
 				</div>
 				<div className="ap1">
-					<App3 />
+					<CountPie
+						title="异常占比"
+						data={[
+							{
+								type: 'JS异常',
+								value: dataa.length,
+							},
+							{
+								type: '资源异常',
+								value: detail.length,
+							},
+						]}
+					/>
 				</div>
 			</div>
 			<div className="wrapper2">
 				<div className="container">
 					<div className="behavior-count">
-						<App4 a={detail1.length} />
-						<App5 a={uv.length} />
+						<PvColumn a={detail1.length} />
+						<UvColumn a={uv.length} />
 					</div>
 					<div className="behavior-chart">
 						<div className="bc">

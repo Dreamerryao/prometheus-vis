@@ -1,10 +1,10 @@
 import React from 'react'
 import http from '../../../utils/http'
 import Layout from '../layout'
-import { Space, Table, Tag } from 'antd'
+import { Space, Table, Tag, Select, Input } from 'antd'
 import { useState, useEffect } from 'react'
 import { formatDate } from '../../../utils/utils'
-
+const { Search } = Input
 const columns = [
     {
       title: '时间',
@@ -59,8 +59,27 @@ function Page() {
         })
     }, [])
     return <div className='js-error'>
+        <div className='search-wrapper'>
+            <Search placeholder="关键词" enterButton="搜索" size='large' allowClear></Search>
+        </div>
         <div className='options-wrapper'>
-            共{data.length}条错误
+            <div className=''>
+                <Select defaultValue={3600} style={{width: 120}}>
+                    <Select.Option value={3600}>1小时内</Select.Option>
+                    <Select.Option value={14400}>4小时内</Select.Option>
+                    <Select.Option value={21600}>6小时内</Select.Option>
+                    <Select.Option value={43200}>12小时内</Select.Option>
+                    <Select.Option value={86400}>24小时内</Select.Option>
+                    <Select.Option value={604800}>一周内</Select.Option>
+                </Select>
+            </div>
+            <div className=''>
+                <Select defaultValue={""} style={{width: 120}}>
+                    <Select.Option value={""}>全部</Select.Option>
+                    <Select.Option value={"jserror"}>jserror</Select.Option>
+                </Select>
+            </div>
+            <div className=''>共{data.length}条错误</div>
         </div>
         <div className='content-wrapper'>
             <Table 
@@ -88,6 +107,11 @@ function Page() {
                 margin-bottom: 20px;
                 line-height: 60px;
                 text-indent: 1em;
+                display: flex;
+            }
+            .search-wrapper{
+                width: 250px;
+                margin-bottom: 10px;
             }
             .content-wrapper{
                 flex-grow: 1;
