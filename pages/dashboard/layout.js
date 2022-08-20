@@ -11,7 +11,7 @@ export default function index({children}) {
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div className='header'>
-            <Header className='header'></Header>
+            <Header></Header>
         </div>
         <div className='container'>
             <div className='menu'><Menu></Menu></div>
@@ -25,10 +25,10 @@ export default function index({children}) {
                 height: 100vh;
             }
             .header{
-                height: 50px;
+                height: 150px;
             }
             .container{
-                height: calc(100vh - 50px);
+                height: calc(100vh - 150px);
                 display: flex;
             }
             .menu{

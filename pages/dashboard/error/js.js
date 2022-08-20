@@ -45,7 +45,7 @@ const columns = [
 		key: 'userAgent',
 	},
 ]
-const useSelected = (data, defaultLimitTime = 3600, defaultSearchKey = '', defaultErrorType) => {
+const useSelected = (data, defaultLimitTime = 0, defaultSearchKey = '', defaultErrorType) => {
 	const [limitTime, setLimitTime] = useState(defaultLimitTime)
 	const [searchKey, setSearchKey] = useState(defaultSearchKey)
     const [errorType, setErrorType] = useState(defaultErrorType)
@@ -53,7 +53,7 @@ const useSelected = (data, defaultLimitTime = 3600, defaultSearchKey = '', defau
 	useEffect(() => {
 		let selectedData
 		selectedData = data.filter((i) => {
-			if (Date.now() / 1000 - i.timestamp >= limitTime) {
+			if (limitTime != 0 && Date.now() / 1000 - i.timestamp >= limitTime) {
 				return false
 			}
             // console.log(i.errorType, errorType)
@@ -88,7 +88,7 @@ function Page() {
 		[searchKey, setSearchKey],
         [errorType, setErrorType],
 		[selectedData, setSelectedData],
-	] = useSelected(data, 3600, '', '')
+	] = useSelected(data, 0, '', '')
 	useEffect(() => {
 		http.get('/v1/api/error/js').then((e) => {
             let allErrorType = {}
@@ -123,6 +123,7 @@ function Page() {
 							setLimitTime(i)
 						}}
 					>
+                        <Select.Option key={0} value={0}>全部</Select.Option>
 						<Select.Option key={3600} value={3600}>1小时内</Select.Option>
 						<Select.Option key={14400} value={14400}>4小时内</Select.Option>
 						<Select.Option key={21600} value={21600}>6小时内</Select.Option>

@@ -109,15 +109,16 @@ function Page() {
                 display: flex;
             }
             .list-wrapper{
-                width: 240px;
+                width: 360px;
                 height: 100%;
                 overflow: scroll;
             }
             .timeline-wrapper{
-                padding-left: 30px;
-                padding-top: 30px;
+                margin-top: 30px;
                 overflow: scroll;
+                margin-right: 50px;
                 flex-grow: 1;
+                box-sizing: border-box;
             }
             
         `}</style>

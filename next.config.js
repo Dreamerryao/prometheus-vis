@@ -9,10 +9,14 @@ const nextConfig = {
         // and before all files including _next/public files which
         // allows overriding page files
         {
+          source: '/',
+          destination: '/home'
+        },
+        {
           source: '/dashboard',
           destination: '/dashboard/sys'
           // has: [{ type: 'query', key: 'overrideMe' }],
-        },
+        }
       ]
     }
   }

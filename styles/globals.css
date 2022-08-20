@@ -14,7 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
-
+@import url(./reset.css);
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
