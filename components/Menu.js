@@ -6,8 +6,8 @@ import {
   ApiOutlined
 } from '@ant-design/icons';
 import { Menu} from 'antd';
-import React, { useState } from 'react';
-import {useRouter} from 'next/router'
+import React, { useEffect, useState } from 'react';
+import {useRouter, Router} from 'next/router'
 
 
 function getItem(label, key, icon, children, type) {
@@ -24,8 +24,8 @@ const items = [
   // key
     getItem('首页概览', '/dashboard/', <ChromeOutlined />),
     getItem('异常监控', '/dashboard/error', <BugOutlined />, [
-        getItem('JS错误', '/js'),
-        getItem('资源异常', '/resource')
+        getItem('JS错误', '/dashboard/error/js'),
+        getItem('资源异常', '/dashboard/error/resource')
     ]),
     getItem('HTTP请求监控', '/dashboard/http', <BulbOutlined />,),
     getItem('性能监控', '/dashboard/performence', <DashboardOutlined />),
@@ -36,6 +36,9 @@ const App = (props) => {
   const [theme, setTheme] = useState('light');
   const [current, setCurrent] = useState('1');
   const router = useRouter()
+  useEffect(()=>{
+    setCurrent(location.pathname)
+  }, [])
   const changeTheme = (value) => {
     setTheme(value ? 'dark' : 'light');
   };
@@ -43,7 +46,7 @@ const App = (props) => {
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
-    router.push(e.keyPath.reverse().join(''))
+    router.push(e.keyPath[0])
   };
 
   return (
