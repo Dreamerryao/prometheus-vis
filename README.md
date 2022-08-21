@@ -1,4 +1,22 @@
-# prometheus-vis
-Bytedance 2022 青训营 - 前端监控系统 - 可视化
-## 接口文档
-[Apifox接口文档](https://www.apifox.cn/apidoc/shared-2a898668-ff9e-46a9-8e99-c9a9cec638af)
+# cra-template-tailwindcss-typescript
+
+A streamlined [Tailwind CSS v3.1](https://tailwindcss.com) template for [Create React App](https://github.com/facebook/create-react-app) in [TypeScript](https://www.typescriptlang.org/).
+
+> This template installs and sets up [Tailwind CSS](https://tailwindcss.com) with TypeScript support.
+
+## Usage
+
+```bash
+npx create-react-app --template tailwindcss-typescript
+```
+
+## Credits
+
+This project was made possible thanks to the following projects.
+
+1. [GeoffSelby/cra-template-tailwindcss](https://github.com/GeoffSelby/cra-template-tailwindcss) - A streamlined Tailwind CSS template for Create React App (in JavaScript).
+2. [cra-template-typescript](https://github.com/facebook/create-react-app/tree/master/packages/cra-template-typescript) - An official TypeScript template for create-react-app.
+
+## License
+
+MIT © [Sung M. Kim](https://sung.codes)
