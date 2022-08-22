@@ -6,7 +6,6 @@ import { LineChartOutlined } from "@ant-design/icons";
 // to customize the default configuration.
 import { Button, Form, Input, Modal } from "antd";
 import React, { useState } from "react";
-import "./index.css";
 import { useEffect } from "react";
 import { useWebsiteContext, Website } from "../../contexts/WebsiteProvider";
 import { useHistory } from "react-router-dom";

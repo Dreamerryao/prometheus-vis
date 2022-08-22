@@ -63,23 +63,23 @@ export interface PerformanceImpl extends TrackDataBase {
   type: "performance";
 }
 export interface Timing extends PerformanceImpl {
-  perfType: "timing";
-  dnsTime: DOMHighResTimeStamp;
-  connectTime: DOMHighResTimeStamp;
-  ttfbTime: DOMHighResTimeStamp;
-  responseTime: DOMHighResTimeStamp;
-  parseDOMTime: DOMHighResTimeStamp;
-  domContentLoadedTime: DOMHighResTimeStamp;
-  timeToInteractive: DOMHighResTimeStamp;
-  loadTime: DOMHighResTimeStamp;
+  perf_type: "timing";
+  dns_time: DOMHighResTimeStamp;
+  connect_time: DOMHighResTimeStamp;
+  ttfb_time: DOMHighResTimeStamp;
+  response_time: DOMHighResTimeStamp;
+  parse_dom_time: DOMHighResTimeStamp;
+  dom_content_loaded_time: DOMHighResTimeStamp;
+  time_to_interactive: DOMHighResTimeStamp;
+  load_time: DOMHighResTimeStamp;
 }
 export interface Paint extends PerformanceImpl {
-  prefType: "paint";
-  firstPaint: DOMHighResTimeStamp;
-  firstContentPaint: DOMHighResTimeStamp;
-  firstMeaningfulPaint: DOMHighResTimeStamp;
-  largestContentfulPaint: DOMHighResTimeStamp;
-  firstInputDelay: DOMHighResTimeStamp;
+  pref_type: "paint";
+  first_paint: DOMHighResTimeStamp;
+  first_content_paint: DOMHighResTimeStamp;
+  first_meaningful_paint: DOMHighResTimeStamp;
+  largest_contentful_paint: DOMHighResTimeStamp;
+  first_input_delay: DOMHighResTimeStamp;
 }
 export interface BehaviorImpl extends TrackDataBase {
   type: "behavior";

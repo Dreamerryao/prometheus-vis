@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import "./styles/tailwind.css";
 import "./styles/colors.css";
+import "./styles/index.css";
 import 'antd/dist/antd.css';
 import App from "./App";
 import React from 'react';

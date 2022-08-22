@@ -191,7 +191,6 @@ const DashboardHomePage = () => {
         .map((x: any) => {
           return { ...x, id: x._id.toString() };
         }) as HttpRequest[];
-        console.log(errData);
       const filterErrData = errData.filter(
         (x: any) =>
           (isNaN(Number(x.timestamp)) ? 0 : Number(x.timestamp)) >

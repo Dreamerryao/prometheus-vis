@@ -9,6 +9,11 @@ import {
   DashboardOutlined,
 } from "@ant-design/icons";
 import DashboardHomePage from "./home";
+import DashboardJsErrorPage from "./jsError";
+import DashboardResourceErrorPage from "./resourceError";
+import DashboardHttpPage from "./http";
+import DashboardPerformancePage from "./performance";
+import DashboardBehaviorPage from "./behavior";
 const { Content, Sider } = Layout;
 function getItem(label: string, key: string, icon?: ReactNode, children?: any) {
   return {
@@ -83,17 +88,12 @@ const Dashboard: React.FC = () => {
         }}
       >
         <Content style={{ margin: "24px 16px 0", background: "transparent" }}>
-          
-          {/* {currentKey === "event" && currentEventId < 0 && (
-            <EventManagePage
-              onChangeEventId={(eid: number) => setCurrentEventId(eid)}
-            />
-          )}
-          {currentKey === "event" && currentEventId >= 0 && (
-            <RecordManagePage eid={currentEventId} onBack={onBack} />
-          )}
-          {currentKey === "user" && <StudentManagePage />} */}
           {currentKey === "home" && <DashboardHomePage />}
+          {currentKey === "jsError" && <DashboardJsErrorPage />}
+          {currentKey === "resourceError" && <DashboardResourceErrorPage />}
+          {currentKey === "api" && <DashboardHttpPage />}
+          {currentKey === "performance" && <DashboardPerformancePage />}
+          {currentKey === "behavior" && <DashboardBehaviorPage />}
         </Content>
       </Layout>
     </Layout>

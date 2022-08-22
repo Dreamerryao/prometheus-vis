@@ -2,8 +2,8 @@
  * 封装 fetch
  */
 
-// export const baseURL = 'http://120.55.12.109:8080';
-export const baseURL = 'http://localhost:8080/v1/api/';
+export const baseURL = 'http://120.55.12.109:8080/v1/api/';
+// export const baseURL = 'http://localhost:8080/v1/api/';
 export const getCookie = (name: string) => {
   const r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
   return r ? r[1] : undefined;
