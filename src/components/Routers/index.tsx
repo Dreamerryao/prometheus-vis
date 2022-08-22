@@ -4,8 +4,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { useWebsiteContext } from "../../contexts/WebsiteProvider";
 import Dashboard from "../../pages/Dashboard";
 
-const HOME_PAGE_PATH = "/";
-const DASHBORAD_PAGE_PATH = "/dashboard";
+const HOME_PAGE_PATH = "/prometheus-vis/";
+const DASHBORAD_PAGE_PATH = "/prometheus-vis/dashboard";
 const Routers = () => {
   const { currentWebsite } = useWebsiteContext();
   return (

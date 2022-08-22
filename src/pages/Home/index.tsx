@@ -145,7 +145,7 @@ export default function HomePage() {
                   className="card-body flex-col justify-between cursor-pointer"
                   onClick={() => {
                     onChangeWebsite(i);
-                    history.push("/dashboard");
+                    history.push("/prometheus-vis/dashboard");
                   }}
                 >
                   <div className="name mb-3 font-bold">{i.title}</div>

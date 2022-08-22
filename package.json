@@ -1,5 +1,6 @@
 {
-  "name": "prometheus-vis3",
+  "name": "prometheus-vis",
+  "homepage":"./prometheus-vis",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
